@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Web Karma | Андрей — создание сайтов на Tilda</title>
+    <meta name="description" content="Web Karma | Андрей — создание сайтов на Tilda под ключ от 5 000 ₽. Адаптивный дизайн, настройка заявок, обучение. Работа по договору.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header {
+            background: white;
+            padding: 16px 0;
+            border-bottom: 1px solid #eef2f6;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0a2540, #e67e22);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            font-weight: 500;
+            font-size: 16px;
+            color: #5a6e8a;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #2d3e5f;
+            margin-left: 24px;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            color: #e67e22;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        .btn-primary {
+            background: #e67e22;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #d35400;
+            transform: scale(1.02);
+        }
+        .btn-outline {
+            border: 1.5px solid #e67e22;
+            background: transparent;
+            color: #e67e22;
+        }
+        .btn-outline:hover {
+            background: #e67e22;
+            color: white;
+        }
+        .hero {
+            padding: 60px 0 40px;
+            background: linear-gradient(135deg, #fef9f0 0%, #ffffff 100%);
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #0a2540;
+        }
+        .hero h1 span {
+            color: #e67e22;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #4a627a;
+            margin-bottom: 30px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .hero-stats {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background: white;
+            padding: 30px;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #e67e22;
+        }
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            color: #0a2540;
+        }
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            padding: 28px;
+            flex: 1;
+            min-width: 260px;
+            border: 1px solid #eef2f6;
+            transition: all 0.2s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #fdebd0;
+            box-shadow: 0 15px 30px -12px rgba(230,126,34,0.1);
+        }
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 30px;
+            font-weight: 800;
+            color: #e67e22;
+            margin: 15px 0;
+        }
+        .service-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+        .service-list li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .service-list i {
+            color: #e67e22;
+            width: 20px;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .portfolio-item {
+            background: #fef9f0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #fdebd0;
+        }
+        .portfolio-img {
+            background: linear-gradient(135deg, #fdebd0, #fef5e7);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #e67e22;
+        }
+        .portfolio-info {
+            padding: 20px;
+        }
+        .steps-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            background: #fef9f0;
+            padding: 25px 20px;
+            border-radius: 20px;
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #e67e22;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 15px;
+        }
+        .about-block {
+            background: #fef9f0;
+            border-radius: 32px;
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        .about-icon {
+            flex: 1;
+            text-align: center;
+            font-size: 100px;
+            color: #e67e22;
+        }
+        .about-text {
+            flex: 2;
+        }
+        .faq-item {
+            background: #fef9f0;
+            border-radius: 16px;
+            padding: 18px 24px;
+            margin-bottom: 12px;
+        }
+        .faq-question {
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .contact-block {
+            background: linear-gradient(135deg, #0a2540, #1f4b6e);
+            border-radius: 32px;
+            padding: 48px 40px;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        .contact-text {
+            flex: 1;
+        }
+        .contact-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-form input {
+            padding: 14px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 16px;
+        }
+        .contact-form button {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .footer {
+            background: #0a2540;
+            color: #8ba0b5;
+            text-align: center;
+            padding: 40px 0;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .section-title { font-size: 26px; }
+            .nav a { margin-left: 16px; font-size: 14px; }
+            .contact-block { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo">Web Karma <span>| Андрей</span></div>
+        <div class="nav">
+            <a href="#services">Услуги</a>
+            <a href="#portfolio">Портфолио</a>
+            <a href="#steps">Этапы</a>
+            <a href="#contact">Контакты</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>Создаю сайты на Tilda <span>от 5 000 ₽</span></h1>
+                <p>Адаптивный дизайн, настройка заявок, обучение управлению. Ваш бизнес в интернете за 7-14 дней.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Заказать сайт →</a>
+                    <a href="#portfolio" class="btn btn-outline">Примеры работ</a>
+                </div>
+                <div style="margin-top: 30px; font-size: 14px; color: #5a6e8a;">
+                    ✅ Работа по договору | ✅ Бесплатная консультация | ✅ Поддержка 14 дней
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat"><div class="stat-number">5+</div><div>проектов</div></div>
+                <div class="stat"><div class="stat-number">100%</div><div>довольных клиентов</div></div>
+                <div class="stat"><div class="stat-number">24/7</div><div>поддержка</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Цены на разработку</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Лендинг</h3>
+                    <p>Одностраничный сайт для услуги или товара</p>
+                    <div class="price">5 000 ₽</div>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check-circle"></i>Адаптивный дизайн</li>
+                        <li><i class="fas fa-check-circle"></i>Форма заявки</li>
+                        <li><i class="fas fa-check-circle"></i>Настройка аналитики</li>
+                        <li><i class="fas fa-check-circle"></i>Обучение управлению</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width:100%; text-align:center;">Заказать</a>
+                </div>
+                <div class="service-card">
+                    <h3>Сайт-визитка</h3>
+                    <p>2-3 страницы о компании и услугах</p>
+                    <div class="price">7 000 ₽</div>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check-circle"></i>Всё как в лендинге</li>
+                        <li><i class="fas fa-check-circle"></i>До 5 страниц</li>
+                        <li><i class="fas fa-check-circle"></i>Карта сайта</li>
+                        <li><i class="fas fa-check-circle"></i>2 недели поддержки</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width:100%; text-align:center;">Заказать</a>
+                </div>
+                <div class="service-card">
+                    <h3>Каталог товаров</h3>
+                    <p>Интернет-магазин или каталог услуг</p>
+                    <div class="price">от 10 000 ₽</div>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check-circle"></i>Карточки товаров</li>
+                        <li><i class="fas fa-check-circle"></i>Корзина и заказ</li>
+                        <li><i class="fas fa-check-circle"></i>Фильтры поиска</li>
+                        <li><i class="fas fa-check-circle"></i>Онлайн-оплата</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width:100%; text-align:center;">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Примеры работ</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item"><div class="portfolio-img"><i class="fas fa-tooth"></i></div><div class="portfolio-info"><h3>Стоматология «32 Улыбки»</h3><p>Лендинг + запись онлайн</p><span style="color:#e67e22;">📈 Заявок +200%</span></div></div>
+                <div class="portfolio-item"><div class="portfolio-img"><i class="fas fa-hand-sparkles"></i></div><div class="portfolio-info"><h3>Маникюр «Идеальные ногти»</h3><p>Сайт-визитка</p><span style="color:#e67e22;">⭐ Запись на неделю вперёд</span></div></div>
+                <div class="portfolio-item"><div class="portfolio-img"><i class="fas fa-couch"></i></div><div class="portfolio-info"><h3>«Домашний рай»</h3><p>Каталог товаров</p><span style="color:#e67e22;">💰 Выручка +150%</span></div></div>
+            </div>
+            <p style="text-align:center; margin-top: 20px; font-size:14px; color:#5a6e8a;">Реальные проекты. Ваш сайт может быть следующим!</p>
+        </div>
+    </section>
+
+    <section id="steps">
+        <div class="container">
+            <h2 class="section-title">Как мы работаем</h2>
+            <div class="steps-grid">
+                <div class="step"><div class="step-number">1</div><h3>Брифинг</h3><p>Обсуждаем задачу и цели</p></div>
+                <div class="step"><div class="step-number">2</div><h3>Прототип</h3><p>Создаю макет будущего сайта</p></div>
+                <div class="step"><div class="step-number">3</div><h3>Дизайн</h3><p>Утверждаем визуал</p></div>
+                <div class="step"><div class="step-number">4</div><h3>Запуск</h3><p>Сайт готов и работает</p></div>
+            </div>
+            <p style="text-align:center; margin-top: 25px;"><strong>⏱ Срок: 7-14 дней — и ваш сайт в интернете</strong></p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="about-block">
+                <div class="about-icon"><i class="fas fa-user-graduate"></i></div>
+                <div class="about-text">
+                    <h2 style="font-size: 28px; margin-bottom: 15px;">Привет, я Андрей</h2>
+                    <p>Обучаюсь веб-дизайну в Нетологии (с декабря 2024). Уже сделал 5+ сайтов для реальных заказчиков. Работаю на Tilda — это быстро и надёжно.</p>
+                    <p style="margin-top: 15px;">✅ Работа по договору<br>✅ Бесплатная консультация<br>✅ Техподдержка 14 дней после сдачи</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Частые вопросы</h2>
+            <div class="faq-item"><div class="faq-question">Сколько стоят доработки? <span>+</span></div><div>Первые 2 недели — бесплатно. Дальше — по договорённости.</div></div>
+            <div class="faq-item"><div class="faq-question">Могу ли я сам менять текст? <span>+</span></div><div>Да, Tilda очень простая. Я научу вас за 15 минут.</div></div>
+            <div class="faq-item"><div class="faq-question">Какая предоплата? <span>+</span></div><div>50% до старта, 50% после утверждения готового сайта.</div></div>
+            <div class="faq-item"><div class="faq-question">Есть ли гарантия? <span>+</span></div><div>Да. Если срываю срок по своей вине — скидка 10% за каждую неделю.</div></div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-block">
+                <div class="contact-text">
+                    <h2 style="color:white; margin-bottom: 15px;">Обсудим ваш проект?</h2>
+                    <p>Напишите или позвоните — отвечу на все вопросы, сделаю расчёт за 10 минут бесплатно.</p>
+                    <div style="margin-top: 25px;">
+                        <p><i class="fab fa-whatsapp"></i> WhatsApp: <strong>+7 982 918-21-18</strong></p>
+                        <p><i class="fas fa-phone-alt"></i> Звонок: <strong>+7 982 918-21-18</strong></p>
+                        <p><i class="fas fa-envelope"></i> Email: <strong>webkarma@mail.ru</strong></p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <input type="text" id="nameInput" placeholder="Ваше имя">
+                    <input type="tel" id="phoneInput" placeholder="Номер телефона">
+                    <button onclick="sendForm()">Отправить заявку →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2025 Web Karma | Андрей — создание сайтов на Tilda</p>
+        <p style="margin-top: 10px; font-size: 14px;">Сайт-визитка | Разработка под ключ | Работа по договору</p>
+    </div>
+</footer>
+
+<script>
+    function sendForm() {
+        let name = document.getElementById('nameInput').value.trim();
+        let phone = document.getElementById('phoneInput').value.trim();
+        if (name === "" || phone === "") {
+            alert("Пожалуйста, заполните имя и телефон.");
+            return;
+        }
+        alert(`Спасибо, ${name}! Я свяжусь с вами в ближайшее время.`);
+        document.getElementById('nameInput').value = '';
+        document.getElementById('phoneInput').value = '';
+    }
+
+    document.querySelectorAll('.faq-question').forEach(q => {
+        let answer = q.nextElementSibling;
+        answer.style.display = 'none';
+        q.addEventListener('click', () => {
+            if (answer.style.display === 'none') {
+                answer.style.display = 'block';
+                q.innerHTML = q.innerHTML.replace('+', '−');
+            } else {
+                answer.style.display = 'none';
+                q.innerHTML = q.innerHTML.replace('−', '+');
+            }
+        });
+    });
+</script>
+</body>
+</html>
